@@ -2,3 +2,4 @@
 server=https://jira.domain.com
 username=yourname
 password=hunter2
+spooldirs=/tmp/jira1,/tmp/jira2,/tmp/jira3

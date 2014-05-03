@@ -63,13 +63,20 @@ def main(argv=None):
         url = config.get('jira', 'server')
         username = config.get('jira', 'username')
         password = config.get('jira', 'password')
+        spool_dirs = config.get('jira', 'spooldirs').split(',')
     except Exception as e:
         logging.error('Could not read JIRA settings from configuration file, please check the [jira] section')
         logging.exception(e)
         return -1
 
     j = JDelay(url=url, username=username, password=password)
-    j.process_spool('/Users/oogali/jqueue')
+    for spool in spool_dirs:
+        logging.info('Processing spool directory {}...'.format(spool))
+        if not os.path.isdir(spool):
+            logging.error('{} is not a directory'.format(spool))
+            continue
+
+        j.process_spool(spool)
 
     return 0
 
