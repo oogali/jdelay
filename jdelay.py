@@ -23,7 +23,7 @@ class JDelay:
             project = os.path.basename(root).upper()
             filenames = map(lambda x: os.path.join(directory, project, x), filenames)
 
-            print '{} --> {}'.format(project, filenames)
+            logging.debug('{} --> {}'.format(project, filenames))
             for filename in filenames:
                 logging.info('Processing {}'.format(filename))
                 fd = open(filename, 'r')
